@@ -55,12 +55,15 @@ Cuando el programa lo solicite, ingresa los términos que deseas encontrar.
 
 ## Ejemplos de ejecución
 semestre, admición, créditos
-![WhatsApp Image 2026-04-07 at 8 24 31 PM](https://github.com/user-attachments/assets/c022382d-0656-42a9-9c48-aa8bc89d67d3)
+<img width="1310" height="374" alt="image" src="https://github.com/user-attachments/assets/1e6af967-2e96-42fd-949d-a55d2f20b6a5" />
+
 
 estudios, criterios, promoción
-![WhatsApp Image 2026-04-07 at 8 29 29 PM](https://github.com/user-attachments/assets/201664ed-0144-47cb-907a-9699dcb1fe86)
+<img width="1306" height="363" alt="image" src="https://github.com/user-attachments/assets/03db3ca8-d99c-4c00-bc81-520870db5db4" />
+
 
 autonomía, aspirantes, estado
-![WhatsApp Image 2026-04-07 at 9 22 23 PM](https://github.com/user-attachments/assets/b95251ad-c8b6-428b-b494-417c7ae2ad1a)
+<img width="1304" height="391" alt="image" src="https://github.com/user-attachments/assets/4b2b7d11-d084-4bd3-9896-b4d04020e20f" />
+
 
 
