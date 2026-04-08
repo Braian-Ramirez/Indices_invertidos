@@ -29,7 +29,6 @@ def calcular_idf(termino, todos_documentos):
     """IDF = log(Total_Docs / Docs_con_la_palabra)"""
     N = len(todos_documentos)
     df = sum(1 for doc in todos_documentos if termino in limpiar_texto(doc).split())
-    # Usamos validación simple para evitar división por cero
     if df == 0: return 0
     return np.log(N / df)
 
@@ -40,6 +39,9 @@ def buscar(consulta, documentos):
     
     # Pre-calcular IDF para cada palabra de la consulta
     idfs = {palabra: calcular_idf(palabra, documentos) for palabra in palabras_consulta}
+    
+    # Ordenar las palabras de la consulta por su IDF de mayor a menor importancia
+    importancia_palabras = sorted(idfs.items(), key=lambda x: x[1], reverse=True)
     
     for i, doc in enumerate(documentos):
         score_total = 0
@@ -53,8 +55,8 @@ def buscar(consulta, documentos):
             "score": score_total
         })
     
-    # Ordenar por relevancia (score)
-    return sorted(resultados, key=lambda x: x['score'], reverse=True)
+    # Retornamos los resultados y la tabla de importancia
+    return sorted(resultados, key=lambda x: x['score'], reverse=True), importancia_palabras
 
 # --- Ejecución del Motor ---
 if __name__ == "__main__":
@@ -63,9 +65,17 @@ if __name__ == "__main__":
     print("-" * 50)
     query = input("¿Qué artículo del reglamento buscas?: ")
     
-    ranking = buscar(query, articulos_reglamento)
+    ranking, importancia = buscar(query, articulos_reglamento)
     
-    print(f"\nResultados para: '{query}'")
+    # Imprimir análisis de palabras de la consulta (IDF)
+    print("\n[ANÁLISIS DE RELEVANCIA (IDF)]")
+    print("Palabras ordenadas por importancia (de más raras a más comunes):")
+    for palabra, val_idf in importancia:
+        mensaje = "Muy específica" if val_idf > 1.5 else "Común en el texto"
+        print(f" - '{palabra}': {val_idf:.4f} ({mensaje})")
+    
+    # Imprimir Ranking Final
+    print(f"\nRANKING DE RESULTADOS PARA: '{query}'")
     print("=" * 50)
     
     encontrado = False
@@ -75,4 +85,4 @@ if __name__ == "__main__":
             encontrado = True
     
     if not encontrado:
-        print("No se encontraron artículos con esos términos. Intenta con: 'beca', 'fraude' o 'matrícula'.")
+        print("No se encontraron artículos con esos términos.")
